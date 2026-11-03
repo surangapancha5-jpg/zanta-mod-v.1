@@ -1,0 +1,40 @@
+name: ZANTA MOD V1 APK BUILD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Web App
+        run: npm run build
+
+      - name: Build APK
+        uses: cemcoe/web-to-apk-action@v1
+        with:
+          app_name: "ZANTA MOD V1"
+          app_id: "com.zanta.modv1"
+          build_command: "npm install && npm run build"
+          web_dir: "dist"
