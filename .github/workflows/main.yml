@@ -26,7 +26,7 @@ jobs:
           java-version: 17
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build Web App
         run: npm run build
@@ -36,5 +36,5 @@ jobs:
         with:
           app_name: "ZANTA MOD V1"
           app_id: "com.zanta.modv1"
-          build_command: "npm install && npm run build"
+          build_command: "npm install --legacy-peer-deps && npm run build"
           web_dir: "dist"
