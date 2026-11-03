@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    border-color: #222d34;
+  }
+  
+  body {
+    background-color: #0c1317;
+    color: #e9edef;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Classic Doodle Pattern */
+.wa-doodle-bg {
+  background-color: #0b141a;
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.02) 2%, transparent 0%),
+    radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.02) 2%, transparent 0%);
+  background-size: 100px 100px;
+}
+
+/* Recording Pulse */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.8s infinite ease-in-out;
+}
+
+/* Animated Emojis for Single Character / Big Emojis */
+@keyframes emoji-heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.32); }
+  28% { transform: scale(1.1); }
+  42% { transform: scale(1.38); }
+  70% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes emoji-laugh {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(-10deg); }
+  75% { transform: translateY(-4px) rotate(10deg); }
+}
+
+@keyframes emoji-fire {
+  0%, 100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 2px rgba(255, 100, 0, 0.5)); }
+  50% { transform: scale(1.18) translateY(-6px); filter: drop-shadow(0 0 10px rgba(255, 120, 0, 0.9)); }
+}
+
+@keyframes emoji-bounce-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.1); }
+}
+
+.anim-emoji-heart {
+  display: inline-block;
+  animation: emoji-heartbeat 1.3s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.anim-emoji-laugh {
+  display: inline-block;
+  animation: emoji-laugh 0.9s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.anim-emoji-fire {
+  display: inline-block;
+  animation: emoji-fire 1s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.anim-emoji-bounce {
+  display: inline-block;
+  animation: emoji-bounce-float 1.8s infinite ease-in-out;
+  transform-origin: center;
+}
+
+/* iOS Emoji Picker Container Override for Dark Mode */
+.epr-dark-theme {
+  --epr-bg-color: #182229 !important;
+  --epr-category-label-bg-color: #202c33 !important;
+  --epr-text-color: #e9edef !important;
+  --epr-search-input-bg-color: #202c33 !important;
+  --epr-search-border-color: #2a3942 !important;
+  --epr-hover-bg-color: #2a3942 !important;
+  --epr-focus-bg-color: #2a3942 !important;
+  border: 1px solid #2a3942 !important;
+  border-radius: 1rem !important;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "zavi chats",
+  "description": "zavi chats v1.0.0 - Secure, private, real-time messaging, voice notes, calls, status updates, Zanta AI, Song Bot, and verified channels.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
