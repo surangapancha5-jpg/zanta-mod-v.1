@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -25,16 +26,36 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build Web App
+      - name: Build React App
         run: npm run build
 
+      - name: Install Capacitor
+        run: npm install --legacy-peer-deps @capacitor/core @capacitor/cli @capacitor/android
+
+      - name: Initialize Capacitor
+        run: |
+          npx cap init "ZANTA MOD V1" "com.zanta.modv1" --web-dir dist
+
+      - name: Add Android Platform
+        run: npx cap add android
+
+      - name: Sync Android
+        run: npx cap sync android
+
       - name: Build APK
-        uses: cemcoe/web-to-apk-action@v1
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
-          app_name: "ZANTA MOD V1"
-          app_id: "com.zanta.modv1"
-          build_command: "npm install --legacy-peer-deps && npm run build"
-          web_dir: "dist"
+          name: ZANTA-MOD-V1-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
